@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %} 
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+   
+  <title>FOOD HUNT</title>
+
+  <!-- slider stylesheet -->
+
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="{% static 'hm/css/bootstrap.css' %}" />
+   
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet" />
+  <!-- Custom styles for this template -->
+  <link href="{% static 'hm/css/style.css' %}" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="{% static 'hm/css/responsive.css' %}" rel="stylesheet" />
+  <style>
+    .dropbtn {
+      background-color: #4CAF50;
+      color: white;
+      padding: 18px;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .dropdown {
+      position: relative;
+      display: inline-block;
+      padding: 56px;
+    }
+    
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+    
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+    
+    .dropdown-content a:hover {background-color: #f1f1f1}
+    
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    
+    .dropdown:hover .dropbtn {
+      background-color: #3e8e41;
+    }
+    </style>
+</head>
+
+<body id="top">
+
+  <div class="hero_area">
+
+    <!-- slider section -->
+      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="slider_item-box">
+              <div class="slider_item-container">
+                <div class="container">
+              
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+    <!-- end slider section -->
+  </div>
+
+
+  <!-- food  section -->
+  {% for i in pr %}
+    
+      <div class="row layout_padding2">
+        <div class="col-md-8">
+          <div class="fruit_detail-box">
+            <h3>
+              {{i.name}}
+            </h3>
+            <p class="mt-4 mb-5">
+             {{i.desc|truncatewords:15}}
+            </p>
+            <div>
+              <a href={{i.get_url}} class="custom_dark-btn">
+                Buy Now
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 d-flex justify-content-center align-items-center">
+          <div class="fruit_img-box d-flex justify-content-center align-items-center">
+          <a href={{i.get_url}}><img src={{i.img.url}} alt="" class="" height="230px" width="270px" /></a>
+          </div>
+        </div>
+      </div>
+    
+    {% endfor %}
+
+  <!-- end food section -->
+
+
+</body>
+
+</html>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %} 
+<!DOCTYPE html>
+ <html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>Shopping Cart Checkout Widget</title>
+  <link rel="stylesheet" href="{% static 'cr/css/style.css' %}">
+</head>
+<body>
+  <div class="cart">
+ {% for i in ci %}
+    <div class="cart-top">
+      <h2 class="cart-top-title" style="align:center" >Checkout</h2>
+    </div>
+    <div class="buttons">
+    <a href="{% url 'deletecart' i.prodt.id %}"<button class="btn"><i class="fa fa-trash" style="color:red"></i></button></a>
+    </div>
+    <ul>
+      <a href="{{i.prodt.get_url}}">
+      <li class="cart-item">
+        <span class="cart-item-pic">
+        <img src="{{i.prodt.img.url}}" alt="{{i.prodt.name}}" style="width:80px":"height:100px">
+        </span>
+        <span class="cart-item-name">{{i.prodt.name}}</span></a>
+        <span class="cart-item-desc">ID: {{i.prodt.id}}</span><br>
+        <span class="cart-item-price">Price: ${{i.total}}<br><br><a href="{% url 'addcart' i.prodt.id %}"><i class="fa fa-plus-square-o" style="font-size:13px"></i></a>&nbsp;{{i.quantity}}&nbsp;<a href="{% url 'minuscart' i.prodt.id %}"><i class="fa fa-minus-square-o" style="font-size:13px"></i></a></span><br>
+        <p>Qty: </p>
+      </li>
+   </ul><br><br>
+    {% endfor %}
+  </div>
+  <div class="cart-bottom" style="color:white">
+    Total: ${{t}}
+    <a href="#" class="cart-button">Continue</a>
+  </div>
+</body>
+</html>
+{% endblock %}
